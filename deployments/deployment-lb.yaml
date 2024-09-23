@@ -82,6 +82,11 @@ spec:
                 secretKeyRef:
                   name: mongo-credentials
                   key: pwd
+            - name: mongo_host
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: host
             - name: eventengine_def_instance_url
               valueFrom:
                 secretKeyRef:
@@ -127,3 +132,4 @@ spec:
   ports:
     - port: 8080
       name: http
+  type: LoadBalancer
