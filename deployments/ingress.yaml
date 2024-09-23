@@ -1,0 +1,134 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
+  name: lweventengine-secure-frontend
+  namespace: lweventengine
+spec:
+  tls:
+    - hosts:
+        - ee.lwalliances.com
+      secretName: ee-ingress-certs
+  ingressClassName: nginx
+  rules:
+    - host: ee.lwalliances.com # change to your domain
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend-service # change to your service name
+                port:
+                  number: 3000 # change to your service port
+            path: /sessions
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lweventengine-public-frontend
+  namespace: lweventengine
+spec:
+  tls:
+    - hosts:
+        - ee.lwalliances.com
+      secretName: ee-ingress-certs
+  ingressClassName: nginx
+  rules:
+    - host: ee.lwalliances.com # change to your domain
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend-service # change to your service name
+                port:
+                  number: 3000 # change to your service port
+            path: /
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
+  name: lweventengine-secure-backend
+  namespace: lweventengine
+spec:
+  tls:
+    - hosts:
+        - ee.lwalliances.com
+      secretName: ee-ingress-certs
+  ingressClassName: nginx
+  rules:
+    - host: ee.lwalliances.com # change to your domain
+      http:
+        paths:
+          - backend:
+              service:
+                name: backend-service # change to your service name
+                port:
+                  number: 8080 # change to your service port
+            path: /api/sessions
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lweventengine-public-backend
+  namespace: lweventengine
+spec:
+  tls:
+    - hosts:
+        - ee.lwalliances.com
+      secretName: ee-ingress-certs
+  ingressClassName: nginx
+  rules:
+    - host: ee.lwalliances.com # change to your domain
+      http:
+        paths:
+          - backend:
+              service:
+                name: backend-service # change to your service name
+                port:
+                  number: 8080 # change to your service port
+            path: /healthz/status
+            pathType: Prefix
+          - backend:
+              service:
+                name: backend-service # change to your service name
+                port:
+                  number: 8080 # change to your service port
+            path: /api/register
+            pathType: Prefix
+          - backend:
+              service:
+                name: backend-service # change to your service name
+                port:
+                  number: 8080 # change to your service port
+            path: /api/sessions/ctfaddsession
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: oauth2-proxy
+  namespace: lweventengine
+spec:
+  tls:
+    - hosts:
+        - ee.lwalliances.com
+      secretName: ee-ingress-certs
+  ingressClassName: nginx
+  rules:
+    - host: ee.lwalliances.com # change to your domain
+      http:
+        paths:
+          - path: /oauth2
+            pathType: Prefix
+            backend:
+              service:
+                name: oauth2-proxy
+                port:
+                  number: 80

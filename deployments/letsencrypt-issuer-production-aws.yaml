@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: jeff.fry@lacework.net
+    privateKeySecretRef:
+      name: letsencrypt-issuer-account-key
+    solvers:
+      - selector:
+          dnsZones:
+            - lwalliances.com
+        dns01:
+          route53:
+            region: us-west-2
+            accessKeyID: AKIA5ILJI2EHCBFL6T64
+            secretAccessKeySecretRef:
+              name: prod-route53-credentials-secret
+              key: secret-access-key

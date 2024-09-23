@@ -1,0 +1,13 @@
+# Exclude locally vendored dependencies.
+vendor/
+
+# Exclude frontend react app.
+frontend/
+
+# Exclude "build-time" ignore files.
+.dockerignore
+.gcloudignore
+
+# Exclude git history and configuration.
+.gitignore
+.git
