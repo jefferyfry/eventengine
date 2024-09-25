@@ -1,0 +1,6 @@
+[Unit]
+Description=Run mongodbbackup.service daily
+
+[Timer]
+OnCalendar=Mon..Sun *-*-* 5:00:00
+Unit=mongodbbackup.service

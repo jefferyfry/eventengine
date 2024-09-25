@@ -60,10 +60,7 @@ func (s SessionServiceImpl) GetAllSessions() ([]models.Session, error) {
 }
 
 func (s SessionServiceImpl) AddSession(session *models.Session) (*models.Session, error) {
-	sessionCheck, err := s.GetSessionByName(session.Name)
-	if err != nil {
-		return nil, err
-	}
+	sessionCheck, _ := s.GetSessionByName(session.Name)
 	if sessionCheck != nil {
 		return nil, errors.New("Session already exists.")
 	}
@@ -76,7 +73,7 @@ func (s SessionServiceImpl) AddSession(session *models.Session) (*models.Session
 
 	session.CreatedAt = time.Now()
 	session.UpdatedAt = session.CreatedAt
-	_, err = client.Database("eventengine").Collection("sessions").InsertOne(context.TODO(), session)
+	_, err := client.Database("eventengine").Collection("sessions").InsertOne(context.TODO(), session)
 	if err != nil {
 		return nil, err
 	}
@@ -170,7 +167,7 @@ func (s SessionServiceImpl) IncrementSessionRegCount(name string) error {
 
 func getMongoClient() *mongo.Client {
 	credential := options.Credential{
-		AuthSource:    "admin",
+		AuthSource:    "eventengine",
 		AuthMechanism: "SCRAM-SHA-256",
 		Username:      os.Getenv("mongo_usr"),
 		Password:      os.Getenv("mongo_pwd"),

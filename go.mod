@@ -1,10 +1,11 @@
 module github.com/jefferyfry/eventengine
 
-go 1.23
+go 1.19
 
 require (
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.10.0
+	github.com/robfig/cron/v3 v3.0.1
 	go.mongodb.org/mongo-driver v1.17.0
 )
 

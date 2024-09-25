@@ -4,8 +4,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
     nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
-  name: lweventengine-secure-frontend
-  namespace: lweventengine
+  name: eventengine-secure-frontend
+  namespace: eventengine
 spec:
   tls:
     - hosts:
@@ -27,8 +27,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: lweventengine-public-frontend
-  namespace: lweventengine
+  name: eventengine-public-frontend
+  namespace: eventengine
 spec:
   tls:
     - hosts:
@@ -53,8 +53,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
     nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
-  name: lweventengine-secure-backend
-  namespace: lweventengine
+  name: eventengine-secure-backend
+  namespace: eventengine
 spec:
   tls:
     - hosts:
@@ -76,8 +76,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: lweventengine-public-backend
-  namespace: lweventengine
+  name: eventengine-public-backend
+  namespace: eventengine
 spec:
   tls:
     - hosts:
@@ -114,7 +114,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: oauth2-proxy
-  namespace: lweventengine
+  namespace: eventengine
 spec:
   tls:
     - hosts:

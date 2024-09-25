@@ -1,25 +1,22 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
-
 metadata:
-  name: test-cluster
+  name: eventengine-cluster
   region: us-west-2
 
 vpc:
   id: vpc-0355736452e471409
-  cidr: "10.0.0.0/16"
   subnets:
+    public:
+      us-west-2a: { id: subnet-0ab5925c03ddc5dc8 }
+      us-west-2b: { id: subnet-04fc5abfee8462b81 }
     private:
-      private1:
-        id: subnet-05146055a8cdc8ebe
-      private2:
-        id: subnet-0d88082c94fb7b221
+      us-west-2a: { id: subnet-05146055a8cdc8ebe }
+      us-west-2b: { id: subnet-0d88082c94fb7b221 }
 
-nodeGroups:
-  - name: ng-1
-    instanceType: t2.micro
+managedNodeGroups:
+  - name: eventengine-nodes
+    minSize: 1
+    maxSize: 3
     desiredCapacity: 1
-    privateNetworking: true
-    subnets:
-      - private1
-      - private2
+    instanceType: t2.micro

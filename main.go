@@ -34,10 +34,11 @@ func main() {
 
 func startServer() {
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"http://localhost:8080", "http://localhost:3000", "https://ee.laceworkalliances.com", "https://accounts.google.com"}
+	corsConfig.AllowOrigins = []string{"*"}
 	corsConfig.AllowCredentials = true
 
 	server.Use(cors.New(corsConfig))
+	server.Static("/static", "./static")
 
 	routerHealth := server.Group("/healthz")
 	routerHealth.GET("/status", func(ctx *gin.Context) {
