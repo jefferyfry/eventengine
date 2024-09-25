@@ -18,13 +18,7 @@ db.createUser(
 
 ### Create VPC
 
-```
-aws ec2 create-vpc --cidr-block 10.0.0.0/16
-```
-
-### Create Subnets
-
-```
+Create a VPC with two private and two public subnets. The subnets should be in different availability zones. The private subnets should not have a route to the internet.
 
 
 ### EKS Cluster Creation (using AWS profile)
@@ -97,7 +91,7 @@ docker tag eventengine/backend:1 961341558131.dkr.ecr.us-west-2.amazonaws.com/ev
 docker push -a 961341558131.dkr.ecr.us-west-2.amazonaws.com/eventengine/backend
 ```
 
-### Create a K8s Secret for the mongodv creds variables
+### Create a K8s Secret for the mongodb creds variables
 
 ```
 kubectl create secret generic mongocreds\
@@ -117,17 +111,6 @@ kubectl create secret generic defaultinstance \
  --from-literal=defaultLwSubAcct='xxxSubAcct' \
  --namespace=eventengine
 ```
-
-### Create a K8s Secret for CTF access
-
-```
-kubectl create secret generic ctf \
- --from-literal=ctf_secret='xxx' \
-```
-
-### Map Backend Service IAM Role to K8s Service Account
-Follow [these instructions](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) to map an IAM role to a K8s service account. This is required for the backend service. Ensure
-that the IAM role has the AmazonDynamoDBFullAccess policy attached.
 
 ### Deploy via K8s Manifest
 
