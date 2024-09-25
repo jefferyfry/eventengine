@@ -172,7 +172,7 @@ const headCells: readonly HeadCell[] = [
         id: 'lwUrl',
         numeric: false,
         disablePadding: false,
-        label: 'Lacework URL',
+        label: 'eventengineURL',
     },
     /*  {
           id: 'lwSubAccount',
@@ -628,9 +628,8 @@ export default function EnhancedTable() {
         <Box sx={{width: '100%'}}>
             <AppBar position="static">
                 <Toolbar variant="dense">
-                    <Image src="/images/FortiCNAPP-200.png" width="50px" style={{padding: 10}}/>
                     <Typography variant="h5" color="inherit" component="div" sx={{flexGrow: 1}} style={{padding: 25}}>
-                        Lacework FortiCNAPP Event Engine
+                        Event Engine
                     </Typography>
 
                     <Typography variant="body2" color="inherit" component="div" style={{padding: 10}}>
@@ -643,7 +642,7 @@ export default function EnhancedTable() {
                     </Tooltip>
                 </Toolbar>
                 <Typography variant="h6" color="inherit" component="div" sx={{flexGrow: 1}} style={{paddingLeft: 25}}>
-                    Attendee self-provisioning for your Lacework FortiCNAPP events
+                    Attendee self-provisioning for your Event Engine events
                 </Typography>
             </AppBar>
             <Paper sx={{width: '100%', mb: 2}}>
@@ -733,7 +732,7 @@ export default function EnhancedTable() {
                                     margin="dense"
                                     id="lwUrl"
                                     style={{display: instanceType === INSTANCE_TYPE_DEFAULT ? 'none' : 'block'}}
-                                    label="Lacework URL - Example: account.lacework.net"
+                                    label="eventengineURL - Example: account.lacework.net"
                                     type="text"
                                     fullWidth
                                     value={lwUrl}
@@ -746,7 +745,7 @@ export default function EnhancedTable() {
                                     autoFocus
                                     margin="dense"
                                     id="lwSub"
-                                    label="Lacework SubAccount"
+                                    label="eventengineSubAccount"
                                     type="text"
                                     fullWidth
                                     variant="standard"
@@ -847,7 +846,7 @@ export default function EnhancedTable() {
                                     margin="dense"
                                     id="lwUrl"
                                     style={{display: instanceType === INSTANCE_TYPE_DEFAULT ? 'none' : 'block'}}
-                                    label="Lacework URL - Example: account.lacework.net"
+                                    label="eventengineURL - Example: account.lacework.net"
                                     type="text"
                                     fullWidth
                                     value={lwUrl}
@@ -860,7 +859,7 @@ export default function EnhancedTable() {
                                     autoFocus
                                     margin="dense"
                                     id="lwSub"
-                                    label="Lacework SubAccount"
+                                    label="eventengineSubAccount"
                                     type="text"
                                     value={lwSub}
                                     fullWidth

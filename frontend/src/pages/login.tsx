@@ -18,13 +18,12 @@ export default function Login() {
         <Box sx={{width: '100%'}}>
             <AppBar position="static">
                 <Toolbar variant="dense">
-                    <Image src="/images/FortiCNAPP-200.png" width="50px" style={{padding: 10}}/>
                     <Typography variant="h4" color="inherit" component="div" sx={{flexGrow: 1}} style={{padding: 25}}>
-                        Lacework FortiCNAPP Event Engine
+                        Event Engine
                     </Typography>
                 </Toolbar>
                 <Typography variant="h6" color="inherit" component="div" sx={{flexGrow: 1}} style={{paddingLeft: 25}}>
-                    Attendee self-provisioning for your Lacework FortiCNAPP events
+                    Attendee self-provisioning for your Event Engine events
                 </Typography>
             </AppBar>
             <Grid
